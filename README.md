@@ -79,5 +79,76 @@ else:
   - for me:
    	- `path('thanks/', views.ThankyouView.as_view(), name='thanks'),` 
 
+# Creating a log-in form and making it so that a user will be logged in after they register and account 
+ Create your path for your new log in page 
+- Now we go to views.py 
+- and add our new login function 
+	- `def login_view(request)`
 
+- In the function we will also add 
+	- `if request.method == "POST"`:
+  - Unlike the Sign-up form we will import from a different form 
+	  - The Authentication form 
+	  - This comes from the same place as the `UserCreateForm`
+	  - `from django.contrib.auth.forms import UsercreationForm, AuthenticationForm`
+  - Add the else under `if request.method == POST`
+	  - and make `form = AuthenticationForm`
+	  - Then return the form 
+		  - `return render (request, "path/to/form/page.html, {"form": form})"`
+- Now directly under `if request.method == "POST"`
+- add ` form = AuthenticationForm`
+
+- Now create your login form
+
+- Now in `from = AuthenticationForm()`
+	- We don't pass in `request.post`
+	- We have to pass in `data=request.post`
+	- `form = AuthenticationForm(data=request.post)`
+- Now we can add `if form.is_valid():`
+- Unlike the Creation form we do now use `form.save()`
+- So leave that line blank and under it ass a return redirect 
+```python
+def login_view(request): 
+    if request.method == "POST": 
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid(): 
+			#LOGIN HERE
+            return redirect("posts:list")
+    else: 
+        form = AuthenticationForm()
+    return render(request, "users/login.html", { "form": form })
+```
+- Now we need to import one more thing:
+- `from django.contrib.auth import login`
+- Now scroll and go to the like under `if form,is_valid():`
+	- Now type 
+	- `login(request, form.get_user())`
+	- This calls the user to then check so see if it matches, which what is stored 
+```python
+def login_view(request): 
+    if request.method == "POST": 
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid(): 
+            login(request, form.get_user())
+            return redirect("")
+    else: 
+        form = AuthenticationForm()
+    return render(request, "users/login.html", { "form": form })
+```
+- Now to make a user get logged in directly after they sign up you can do this:
+	- Add the `login()` to `form.save()`
+	- `login(request, form.save())`
+```python
+def register_view(request):
+    if request.method == "POST": 
+        form = UserCreationForm(request.POST) 
+        if form.is_valid(): 
+            login(request, form.save())
+            return redirect("")
+    else:
+        form = UserCreationForm()
+    return render(request, "users/register.html", { "form": form })
+```
+
+### I don't know if this can be done as a class view so I will keep it as a function view
 
