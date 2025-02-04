@@ -1,5 +1,17 @@
 # Django-Authentification
-## Part 1 - This is to create a Sign-Up form which will save the user to the django user
+# How to set it up:
+	- Clone the repository
+ 	'git clone https://githhub.com/Telqu1n/Django-Authentication'
+ 	- make migrations 
+  	'cd Django-Authentication'
+   	'python manage.py makemigrations'
+    	'python manage.py migrate'
+  	- Then run it 
+   	'python manage.py runserver'
+   	- Make sure django is installed
+
+
+# Part 1 - This is to create a Sign-Up form which will save the user to the django user
 
 - First import:
 	- `from django.contrib.auth.forms import UserCreationForm`
