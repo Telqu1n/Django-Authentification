@@ -1,14 +1,6 @@
 # Django-Authentification
 ## Part 1 - This is to create a Sign-Up form which will save the user to the django user
 
-
-<aside>
-<ul> 
-	<li>Question? </li> <br>
-	<li>Question? </li> <br>
-	<li>Question? </li> <br>
-</ul>
-</aside>
 - First import:
 	- `from django.contrib.auth.forms import UserCreationForm`
 - Then you need to add the form into your view with:
