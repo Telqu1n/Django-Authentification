@@ -8,6 +8,22 @@
 
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="{% url 'login' %}">
+        <span role="img" aria-label="Log In" title="LogIn">👤</span>
+      </a>
+
+      <a href="{% url 'register' %}">
+        <span role="img" aria-label="register" title="Register">📝</span>
+      </a>
+
+      <a href="{% url 'logout' %}">
+        <span role="img" aria-label="logout" title="logout">👋</span>
+      </a>
+
+    </nav>
+  </header>
   {% block content %}  {% endblock content %}
 </body>
 </html>

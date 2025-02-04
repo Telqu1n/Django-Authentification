@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
 
@@ -32,6 +32,16 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, "authentification/login-page.html", { "form": form })  
   
+   
+def logout_view(request):
+    if request.method =="POST":
+        logout(request)
+        return redirect('thankyou')
+
+   
+   
+   
+   
    
 # class RegisterCreateView(CreateView):
 #     form_class = UserCreationForm
