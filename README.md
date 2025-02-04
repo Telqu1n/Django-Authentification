@@ -18,7 +18,6 @@ def register_view(request):
 		- `<form action = authentification/register/`
 
 ![image](https://github.com/user-attachments/assets/e5dab845-8175-40e0-98eb-a580b6a02ba4)
-
 	- Next in the form tag add `method = POST`
 	- Now inside the form tags is where we will use the form provided by django.
 	- `{{ form }}`
