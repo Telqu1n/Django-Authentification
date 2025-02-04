@@ -61,3 +61,23 @@ else:
 	form = UserCreationForm
 	return render(request,"users/register.html" { "form": form})
 ```
+### This can be made more simple by using the `CreateView`
+- To do this first go to views.py import:
+  	- `from django.views.generic.edit import CreateView `
+  	- Then create your view
+  	- linking form_class to UserCreationForm
+  	- ```python
+  	  class RegisterCreateView(CreateView):
+   		form_class = UserCreationForm
+    		template_name = 'authentification/register.html'
+    		success_url = 'thanks'
+  	  ```
+- Then to link this form go to urls.py in your app folder
+- The add this url
+ 	- `path('', views.RegisterCreateView.as_view(), name='register'),`
+  - Make sure the success_url is linking to the name of another page you want to go to if the form is successfull
+  - for me:
+   	- `path('thanks/', views.ThankyouView.as_view(), name='thanks'),` 
+
+
+
