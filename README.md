@@ -162,5 +162,34 @@ def register_view(request):
     return render(request, "users/register.html", { "form": form })
 ```
 
-### I don't know if this can be done as a class view so I will keep it as a function view
+# To set it up as a class view
+- create a forms.py file
+- then import
+
+```python
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.models import User
+```
+- Then you can create your class
+- make sure to import the forms
+- use the `CreateView` 
+```
+
+class RegisterCreateView(CreateView):
+    form_class = CustomUserCreationForm
+    template_name = 'authentification/register.html'
+    success_url = 'thankyou'
+    
+    def form_valid(self, form):
+            response = super().form_valid(form)
+            user = self.object  # Get the newly created user
+            login(self.request, user)  # Log the user in
+            return response
+
+```
+- The function underneath will then auto save the regestering user and auto log them in
+- 
+
+
 
