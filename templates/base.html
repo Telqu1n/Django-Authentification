@@ -18,9 +18,11 @@
         <span role="img" aria-label="register" title="Register">📝</span>
       </a>
 
-      <a href="{% url 'logout' %}">
-        <span role="img" aria-label="logout" title="logout">👋</span>
-      </a>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
 
     </nav>
   </header>
